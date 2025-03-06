@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul { list-style-type: none; }
+        li{
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fd0606;
+            border-radius: 5px;
+            color: white;
+            width: 200px;  
+            text-align: center;
+        }
+        .taskForm{
+            margin-bottom: 10px;
+        }
+        #taskInput{
+            width: 200px;
+            padding: 5px;
+            border-radius: 25px;
+            margin-bottom: 10px;
+        }
+        #priority{
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="taskForm">
+        <label for="taskInput">Task:</label>
+        <br>
+        <input type="text" id="taskInput" placeholder="Enter a task">
+    </div>
+    <div class="taskForm">
+        <label for="priority">Tag:</label>
+        <br>
+        <select name="important" id="priority">
+            <option value="1">Important</option>
+            <option value="0">Not Important</option>
+        </select>
+    </div>
+    
+    <button onclick="addTask()">Add Task</button>
+
+
+    <div>
+        <ul id="tasks">
+            <li>Task 1</li>
+            <li>Task 2</li>
+            <li>Task 3</li>
+        </ul>
+    </div>
+    <script>
+        function addTask(){
+            let taskInput = document.getElementById("taskInput");
+            let priority = document.getElementById("priority");
+            let tasks = document.getElementById("tasks");
+            let newTask = document.createElement("li");
+            newTask.textContent = taskInput.value;
+            if(priority.value === "0"){
+                newTask.style.backgroundColor = "grey";
+            }
+            tasks.appendChild(newTask);
+        }
+        let tasks = [
+                { description: "Task 1", priority:1},
+                { description: "Task 2", priority:0},
+                { description: "Task 3", priority:1}
+            ];
+        function displayTasks(tasks){
+            let listItems = document.getElementsByTagName("li");
+            for (let i = 0; i < tasks.length; i++) {
+                if(tasks[i].priority === 0){
+                    listItems[i].style.backgroundColor = "grey";
+                }
+            }
+        }
+        displayTasks(tasks);
+    </script>
+</body>
+</html>

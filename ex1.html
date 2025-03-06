@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .task { padding: 10px; margin: 5px 0; border-radius: 5px; color: white;width: 20%; }
+        .priority-0 { background-color: grey; }  /* Low priority */
+        .priority-1 { background-color: red; }   /* High priority */
+    </style>
+</head>
+<body>
+    <ul id="taskList"></ul>
+    <script>
+        let tasks = [
+            { description: "Task1", priority: 1 },
+            {description: "Task2",priority:0},
+            {description: "Task3",priority:1}
+        ]
+        
+        function displayTasks(tasks) {
+            let taskList = document.getElementById("taskList");
+            taskList.innerHTML = ""; // Clear existing list
+
+            tasks.forEach(task => {
+                let li = document.createElement("li");
+                li.className = "task priority-" + task.priority;
+                li.textContent = task.description;
+                taskList.appendChild(li);
+            });
+        }
+
+        // Call the function to display tasks
+        displayTasks(tasks);
+    </script>
+</body>
+</html>
